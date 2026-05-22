@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ВМРО — Внатрешна македонска револуционерна организација</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold:       #C9A84C;
+    --gold-light: #F0D878;
+    --gold-dim:   #8B6914;
+    --black:      #0A0806;
+    --dark:       #120F08;
+    --dark2:      #1C1710;
+    --dark3:      #252018;
+    --text:       #E8DFC8;
+    --text-dim:   #9A8A6A;
+    --red:        #8B1A1A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── HEADER / NAV ─── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,8,6,0.95);
+    border-bottom: 1px solid var(--gold-dim);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 64px;
+  }
+
+  .logo-text {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  nav { display: flex; gap: 0; align-items: center; }
+
+  nav a {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 0 16px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    text-transform: uppercase;
+  }
+  nav a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+  .lang-switcher {
+    display: flex;
+    gap: 8px;
+    margin-left: 24px;
+    padding-left: 24px;
+    border-left: 1px solid var(--gold-dim);
+  }
+  .lang-switcher a {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 4px 8px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  .lang-switcher a.active,
+  .lang-switcher a:hover {
+    color: var(--gold);
+    border-color: var(--gold-dim);
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 40px 60px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(139,105,20,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(139,26,26,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 80% 80%, rgba(139,26,26,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-ornament {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .hero-ornament::before,
+  .hero-ornament::after {
+    content: '—';
+    margin: 0 12px;
+    color: var(--gold-dim);
+  }
+
+  .hero-year {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(28px, 5vw, 58px);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    line-height: 1.15;
+    color: var(--gold-light);
+    margin-bottom: 12px;
+    text-shadow: 0 0 60px rgba(201,168,76,0.15);
+  }
+
+  .hero h2 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(11px, 1.5vw, 14px);
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    color: var(--text-dim);
+    margin-bottom: 40px;
+    text-transform: uppercase;
+  }
+
+  .hero-divider {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 40px;
+  }
+
+  .hero-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(18px, 2.5vw, 24px);
+    color: var(--text-dim);
+    max-width: 640px;
+    margin: 0 auto 60px;
+    line-height: 1.6;
+  }
+
+  /* ─── PORTRAITS STRIP ─── */
+  .founders-strip {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 18px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .founder-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .pf {
+    position: relative;
+    width: 100px;
+    height: 128px;
+    flex-shrink: 0;
+  }
+
+  .pf img {
+    position: absolute;
+    top: 7px; left: 7px;
+    width: calc(100% - 14px);
+    height: calc(100% - 14px);
+    object-fit: cover;
+    object-position: top center;
+    clip-path: ellipse(46% 46% at 50% 48%);
+    z-index: 1;
+    filter: grayscale(20%) contrast(1.1) brightness(1.02) sepia(10%);
+    transition: filter 0.3s;
+  }
+  .pf:hover img { filter: grayscale(0%) contrast(1.05) brightness(1.05) sepia(5%); }
+
+  .pf svg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .founder-name {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: var(--gold-dim);
+    text-align: center;
+    text-transform: uppercase;
+    max-width: 96px;
+    line-height: 1.4;
+  }
+
+  .scroll-hint {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--gold-dim);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: pulse 2.5s infinite;
+  }
+
+  .scroll-arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 1px solid var(--gold-dim);
+    border-bottom: 1px solid var(--gold-dim);
+    transform: rotate(45deg);
+    margin-top: 4px;
+  }
+
+  @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+  /* ─── SECTIONS ─── */
+  section {
+    padding: 100px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(22px, 3vw, 34px);
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 16px;
+    letter-spacing: 0.04em;
+  }
+
+  .section-intro {
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    color: var(--text-dim);
+    max-width: 640px;
+    margin-bottom: 56px;
+    font-style: italic;
+  }
+
+  .section-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin-bottom: 48px;
+  }
+
+  /* ─── GRID CARDS ─── */
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+
+  .card {
+    background: var(--dark2);
+    padding: 32px 28px;
+    border: 1px solid rgba(139,105,20,0.2);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.3s, border-color 0.3s;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 0;
+    background: var(--gold);
+    transition: height 0.3s;
+  }
+  .card:hover { background: var(--dark3); border-color: rgba(201,168,76,0.4); }
+  .card:hover::before { height: 100%; }
+
+  .card-year {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+    letter-spacing: 0.05em;
+    line-height: 1.3;
+  }
+
+  .card-text {
+    font-family: 'EB Garamond', serif;
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  .card-arrow {
+    margin-top: 20px;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .card:hover .card-arrow { color: var(--gold); }
+
+  /* ─── TIMELINE ─── */
+  .timeline { position: relative; padding-left: 40px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, var(--gold-dim) 10%, var(--gold-dim) 90%, transparent);
+  }
+
+  .tl-item {
+    position: relative;
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(139,105,20,0.12);
+  }
+  .tl-item:last-child { border-bottom: none; margin-bottom: 0; }
+
+  .tl-dot {
+    position: absolute;
+    left: -44px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--gold);
+    background: var(--black);
+    transform: rotate(45deg);
+  }
+
+  .tl-year {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .tl-title {
+    font-family: 'Cinzel', serif;
+    font-size: 17px;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+    letter-spacing: 0.04em;
+  }
+
+  .tl-text {
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    color: var(--text-dim);
+    max-width: 580px;
+    line-height: 1.65;
+  }
+
+  /* ─── FULL-WIDTH SEPARATOR ─── */
+  .full-sep {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim) 30%, var(--gold-dim) 70%, transparent);
+    margin: 0;
+  }
+
+  .dark-section {
+    background: var(--dark2);
+    padding: 0;
+  }
+  .dark-section > section { padding: 100px 40px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--black);
+    border-top: 1px solid var(--gold-dim);
+    padding: 48px 40px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .footer-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-bottom: 32px;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .footer-links a {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-copy {
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    color: var(--gold-dim);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    header { padding: 0 20px; }
+    nav a { padding: 0 10px; font-size: 10px; }
+    .grid-3 { grid-template-columns: 1fr 1fr; }
+    section { padding: 60px 24px; }
+    .pf { width: 80px; height: 102px; }
+    .founders-strip { gap: 12px; }
+  }
+
+  @media (max-width: 600px) {
+    .grid-3, .grid-2 { grid-template-columns: 1fr; }
+    nav { display: none; }
+    .pf { width: 68px; height: 86px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="#" class="logo-text">ВМРО</a>
+  <nav>
+    <a href="#osnivaci">Основачи</a>
+    <a href="#kongresi">Конгреси</a>
+    <a href="#vojvodi">Војводи</a>
+    <a href="#nastani">Настани</a>
+    <a href="#dokumenti">Документи</a>
+    <a href="#knigi">Книги</a>
+  </nav>
+  <div class="lang-switcher">
+    <a href="#" class="active">МК</a>
+    <a href="#">EN</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-ornament">Основана во Солун</div>
+  <div class="hero-year">1893</div>
+
+  <h1>Внатрешна македонска<br/>револуционерна организација</h1>
+  <h2>Internal Macedonian Revolutionary Organization</h2>
+
+  <div class="hero-divider"></div>
+
+  <p class="hero-quote">„Македонија на Македонците"</p>
+
+  <!-- FOUNDERS -->
+  <div class="founders-strip">
+
+    <div class="founder-item">
+      <div class="pf">
+        <img src="IMG_0107_Copy.jpeg" alt="Христо Татарчев"/>
+        <svg viewBox="0 0 100 128" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gA" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#7A5C0A"/>
+              <stop offset="20%" stop-color="#D4A017"/>
+              <stop offset="38%" stop-color="#F7E170"/>
+              <stop offset="50%" stop-color="#FFD700"/>
+              <stop offset="65%" stop-color="#E8C040"/>
+              <stop offset="82%" stop-color="#C8960C"/>
+              <stop offset="100%" stop-color="#7A5C0A"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="50" cy="64" rx="46" ry="60" fill="none" stroke="url(#gA)" stroke-width="5.5"/>
+          <ellipse cx="50" cy="64" rx="43" ry="57" fill="none" stroke="url(#gA)" stroke-width="0.8" stroke-dasharray="2 4" opacity="0.6"/>
+          <ellipse cx="50" cy="64" rx="48" ry="62" fill="none" stroke="url(#gA)" stroke-width="0.7" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="founder-name">Христо<br/>Татарчев</div>
+    </div>
+
+    <div class="founder-item">
+      <div class="pf">
+        <img src="IMG_0121.png" alt="Дамe Груев"/>
+        <svg viewBox="0 0 100 128" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gB" x1="15%" y1="0%" x2="85%" y2="100%">
+              <stop offset="0%" stop-color="#7A5C0A"/>
+              <stop offset="20%" stop-color="#D4A017"/>
+              <stop offset="38%" stop-color="#F7E170"/>
+              <stop offset="50%" stop-color="#FFD700"/>
+              <stop offset="65%" stop-color="#E8C040"/>
+              <stop offset="82%" stop-color="#C8960C"/>
+              <stop offset="100%" stop-color="#7A5C0A"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="50" cy="64" rx="46" ry="60" fill="none" stroke="url(#gB)" stroke-width="5.5"/>
+          <ellipse cx="50" cy="64" rx="43" ry="57" fill="none" stroke="url(#gB)" stroke-width="0.8" stroke-dasharray="2 4" opacity="0.6"/>
+          <ellipse cx="50" cy="64" rx="48" ry="62" fill="none" stroke="url(#gB)" stroke-width="0.7" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="founder-name">Дамe<br/>Груев</div>
+    </div>
+
+    <div class="founder-item">
+      <div class="pf">
+        <img src="IMG_0110.png" alt="Петар Поп Арсов"/>
+        <svg viewBox="0 0 100 128" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gC" x1="0%" y1="15%" x2="100%" y2="85%">
+              <stop offset="0%" stop-color="#7A5C0A"/>
+              <stop offset="20%" stop-color="#D4A017"/>
+              <stop offset="38%" stop-color="#F7E170"/>
+              <stop offset="50%" stop-color="#FFD700"/>
+              <stop offset="65%" stop-color="#E8C040"/>
+              <stop offset="82%" stop-color="#C8960C"/>
+              <stop offset="100%" stop-color="#7A5C0A"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="50" cy="64" rx="46" ry="60" fill="none" stroke="url(#gC)" stroke-width="5.5"/>
+          <ellipse cx="50" cy="64" rx="43" ry="57" fill="none" stroke="url(#gC)" stroke-width="0.8" stroke-dasharray="2 4" opacity="0.6"/>
+          <ellipse cx="50" cy="64" rx="48" ry="62" fill="none" stroke="url(#gC)" stroke-width="0.7" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="founder-name">Петар Поп<br/>Арсов</div>
+    </div>
+
+    <div class="founder-item">
+      <div class="pf">
+        <img src="IMG_0111.png" alt="Иван Хаци Николов"/>
+        <svg viewBox="0 0 100 128" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gD" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#7A5C0A"/>
+              <stop offset="20%" stop-color="#D4A017"/>
+              <stop offset="38%" stop-color="#F7E170"/>
+              <stop offset="50%" stop-color="#FFD700"/>
+              <stop offset="65%" stop-color="#E8C040"/>
+              <stop offset="82%" stop-color="#C8960C"/>
+              <stop offset="100%" stop-color="#7A5C0A"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="50" cy="64" rx="46" ry="60" fill="none" stroke="url(#gD)" stroke-width="5.5"/>
+          <ellipse cx="50" cy="64" rx="43" ry="57" fill="none" stroke="url(#gD)" stroke-width="0.8" stroke-dasharray="2 4" opacity="0.6"/>
+          <ellipse cx="50" cy="64" rx="48" ry="62" fill="none" stroke="url(#gD)" stroke-width="0.7" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="founder-name">Иван Хаци<br/>Николов</div>
+    </div>
+
+    <div class="founder-item">
+      <div class="pf">
+        <img src="IMG_0114.png" alt="Христо Батанџиев"/>
+        <svg viewBox="0 0 100 128" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gE" x1="10%" y1="0%" x2="90%" y2="100%">
+              <stop offset="0%" stop-color="#7A5C0A"/>
+              <stop offset="20%" stop-color="#D4A017"/>
+              <stop offset="38%" stop-color="#F7E170"/>
+              <stop offset="50%" stop-color="#FFD700"/>
+              <stop offset="65%" stop-color="#E8C040"/>
+              <stop offset="82%" stop-color="#C8960C"/>
+              <stop offset="100%" stop-color="#7A5C0A"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="50" cy="64" rx="46" ry="60" fill="none" stroke="url(#gE)" stroke-width="5.5"/>
+          <ellipse cx="50" cy="64" rx="43" ry="57" fill="none" stroke="url(#gE)" stroke-width="0.8" stroke-dasharray="2 4" opacity="0.6"/>
+          <ellipse cx="50" cy="64" rx="48" ry="62" fill="none" stroke="url(#gE)" stroke-width="0.7" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="founder-name">Христо<br/>Батанџиев</div>
+    </div>
+
+    <div class="founder-item">
+      <div class="pf">
+        <img src="IMG_0112.png" alt="Андон Димитров"/>
+        <svg viewBox="0 0 100 128" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gF" x1="0%" y1="10%" x2="100%" y2="90%">
+              <stop offset="0%" stop-color="#7A5C0A"/>
+              <stop offset="20%" stop-color="#D4A017"/>
+              <stop offset="38%" stop-color="#F7E170"/>
+              <stop offset="50%" stop-color="#FFD700"/>
+              <stop offset="65%" stop-color="#E8C040"/>
+              <stop offset="82%" stop-color="#C8960C"/>
+              <stop offset="100%" stop-color="#7A5C0A"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="50" cy="64" rx="46" ry="60" fill="none" stroke="url(#gF)" stroke-width="5.5"/>
+          <ellipse cx="50" cy="64" rx="43" ry="57" fill="none" stroke="url(#gF)" stroke-width="0.8" stroke-dasharray="2 4" opacity="0.6"/>
+          <ellipse cx="50" cy="64" rx="48" ry="62" fill="none" stroke="url(#gF)" stroke-width="0.7" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="founder-name">Андон<br/>Димитров</div>
+    </div>
+
+  </div>
+
+  <div class="scroll-hint">
+    <span>Истражи</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</div>
+
+<!-- ═══ ОСНОВАЧИ ═══ -->
+<div class="full-sep"></div>
+<section id="osnivaci">
+  <div class="section-label">Основачи · Founders</div>
+  <h2 class="section-title">Шесте основачи на ВМРО</h2>
+  <p class="section-intro">На 23 октомври 1893 г. во Солун, шестмина революционери ја основале организацијата која ќе ја промени историјата на Македонија.</p>
+  <div class="section-divider"></div>
+
+  <div class="grid-3">
+    <a class="card" href="#">
+      <div class="card-year">1869 — 1952</div>
+      <div class="card-title">Христо Татарчев</div>
+      <p class="card-text">Лекар и револуционер од Ресен. Прв претседател на Централниот комитет на ВМРО.</p>
+      <div class="card-arrow">Прочитај повеќе →</div>
+    </a>
+    <a class="card" href="#">
+      <div class="card-year">1871 — 1906</div>
+      <div class="card-title">Дамe Груев</div>
+      <p class="card-text">Учител и водечки организатор. Еден од главните архитекти на Илинденското востание.</p>
+      <div class="card-arrow">Прочитај повеќе →</div>
+    </a>
+    <a class="card" href="#">
+      <div class="card-year">1868 — 1941</div>
+      <div class="card-title">Петар Поп Арсов</div>
+      <p class="card-text">Учител и публицист. Автор на Статутот и Уставот на организацијата.</p>
+      <div class="card-arrow">Прочитај повеќе →</div>
+    </a>
+    <a class="card" href="#">
+      <div class="card-year">1858 — 1923</div>
+      <div class="card-title">Иван Хаци Николов</div>
+      <p class="card-text">Трговец и организатор. Еден од иницијаторите за основање на ВМРО.</p>
+      <div class="card-arrow">Прочитај повеќе →</div>
+    </a>
+    <a class="card" href="#">
+      <div class="card-year">1869 — 1913</div>
+      <div class="card-title">Христо Батанџиев</div>
+      <p class="card-text">Учител и долгогодишен секретар на солунската митрополија. Убиен во 1913 г.</p>
+      <div class="card-arrow">Прочитај повеќе →</div>
+    </a>
+    <a class="card" href="#">
+      <div class="card-year">1859 — 1937</div>
+      <div class="card-title">Андон Димитров</div>
+      <p class="card-text">Учител и револуционер. Активен член на организацијата во нејзините почетни години.</p>
+      <div class="card-arrow">Прочитај повеќе →</div>
+    </a>
+  </div>
+</section>
+
+<!-- ═══ КОНГРЕСИ ═══ -->
+<div class="full-sep"></div>
+<div class="dark-section">
+<section id="kongresi">
+  <div class="section-label">Конгреси · Congresses</div>
+  <h2 class="section-title">Конгреси и собири</h2>
+  <p class="section-intro">Клучните собири на кои се донесувале одлуки за борбата за ослободување на Македонија.</p>
+  <div class="section-divider"></div>
+
+  <div class="grid-2">
+    <a class="card" href="#">
+      <div class="card-year">1896</div>
+      <div class="card-title">Прв конгрес — Солун</div>
+      <p class="card-text">Усвојување на Уставот и Правилникот на организацијата. Прецизирање на целите и структурата.</p>
+      <div class="card-arrow">Прочитај повеќе →</div>
+    </a>
+    <a class="card" href="#">
+      <div class="card-year">1902</div>
+      <div class="card-title">Смилевски конгрес</div>
+      <p class="card-text">Донесување одлука за кревање на Илинденското востание. Историска прекретница.</p>
+      <div class="card-arrow">Прочитај повеќе →</div>
+    </a>
+    <a class="card" href="#">
+      <div class="card-year">1903</div>
+      <div class="card-title">Битолски конгрес</div>
+      <p class="card-text">Финализирање на плановите за Илинденското востание. Распределба на задачите.</p>
+      <div class="card-arrow">Прочитај повеќе →</div>
+    </a>
+    <a class="card" href="#">
+      <div class="card-year">1908</div>
+      <div class="card-title">Конгрес по Младотурската револуција</div>
+      <p class="card-text">Прилагодување на стратегијата по промените во Османлиската Империја.</p>
+      <div class="card-arrow">Прочитај повеќе →</div>
+    </a>
+  </div>
+</section>
+</div>
+
+<!-- ═══ НАСТАНИ — TIMELINE ═══ -->
+<div class="full-sep"></div>
+<section id="nastani">
+  <div class="section-label">Настани · Events</div>
+  <h2 class="section-title">Клучни историски настани</h2>
+  <p class="section-intro">Хронологија на најзначајните моменти во историјата на организацијата и македонското ослободително движење.</p>
+  <div class="section-divider"></div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">23 Октомври 1893</div>
+      <div class="tl-title">Основање на ВМРО — Солун</div>
+      <p class="tl-text">Во домот на Иван Хаци Николов во Солун, шестмина македонски интелектуалци ја основале Македонската револуционерна организација.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1895</div>
+      <div class="tl-title">Основање на Врховниот комитет</div>
+      <p class="tl-text">Во Софија е основан Врховниот македонски комитет кој ќе дејствува паралелно со ВМРО.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2 Август 1903</div>
+      <div class="tl-title">Илинденско востание</div>
+      <p class="tl-text">На Илинден, денот на Свети Илија, избувнало најголемото македонско востание против османлиската власт. Прогласена е Крушевската Република.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1903 — 1908</div>
+      <div class="tl-title">Реформски период</div>
+      <p class="tl-text">По задушувањето на востанието, ВМРО продолжува со борбата преку герилски дејства и дипломатски притисоци врз Европа.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1912 — 1913</div>
+      <div class="tl-title">Балкански војни</div>
+      <p class="tl-text">Поделбата на Македонија меѓу Србија, Грција и Бугарија — трагична прекретница за македонскиот народ.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ДОКУМЕНТИ ═══ -->
+<div class="full-sep"></div>
+<div class="dark-section">
+<section id="dokumenti">
+  <div class="section-label">Документи · Documents</div>
+  <h2 class="section-title">Историски документи</h2>
+  <p class="section-intro">Оригинални статути, прогласи, писма и програмски документи на организацијата.</p>
+  <div class="section-divider"></div>
+
+  <div class="grid-3">
+    <a class="card" href="#">
+      <div class="card-year">1893</div>
+      <div class="card-title">Устав на организацијата</div>
+      <p class="card-text">Основачкиот документ со целите, структурата и принципите на дејствување.</p>
+      <div class="card-arrow">Прегледај →</div>
+    </a>
+    <a class="card" href="#">
+      <div class="card-year">1896</div>
+      <div class="card-title">Правилник — I Конгрес</div>
+      <p class="card-text">Усвоен на Првиот конгрес. Прецизира правата и обврските на членовите.</p>
+      <div class="card-arrow">Прегледај →</div>
+    </a>
+    <a class="card" href="#">
+      <div class="card-year">1903</div>
+      <div class="card-title">Илинденска прокламација</div>
+      <p class="card-text">Прогласот на востаниците до македонскиот народ и европските сили.</p>
+      <div class="card-arrow">Прегледај →</div>
+    </a>
+  </div>
+</section>
+</div>
+
+<!-- ═══ КНИГИ ═══ -->
+<div class="full-sep"></div>
+<section id="knigi">
+  <div class="section-label">Книги · Books</div>
+  <h2 class="section-title">Библиотека</h2>
+  <p class="section-intro">Избор на книги, монографии и научни трудови за историјата на ВМРО и македонското ослободително движење.</p>
+  <div class="section-divider"></div>
+
+  <div class="grid-3">
+    <a class="card" href="#">
+      <div class="card-year">Историографија</div>
+      <div class="card-title">ВМРО — Историја на организацијата</div>
+      <p class="card-text">Сеопфатен преглед на развојот, структурата и дејноста на организацијата.</p>
+      <div class="card-arrow">Повеќе →</div>
+    </a>
+    <a class="card" href="#">
+      <div class="card-year">Биографија</div>
+      <div class="card-title">Гоце Делчев — Живот и дело</div>
+      <p class="card-text">Монографија за животот и револуционерната дејност на Гоце Делчев.</p>
+      <div class="card-arrow">Повеќе →</div>
+    </a>
+    <a class="card" href="#">
+      <div class="card-year">Востание</div>
+      <div class="card-title">Илинден 1903</div>
+      <p class="card-text">Документарна историја на Илинденското востание — подготовки, тек и последици.</p>
+      <div class="card-arrow">Повеќе →</div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="full-sep"></div>
+<footer>
+  <div class="footer-logo">ВМРО</div>
+  <div class="footer-sub">Внатрешна македонска револуционерна организација · 1893</div>
+  <div class="footer-links">
+    <a href="#osnivaci">Основачи</a>
+    <a href="#kongresi">Конгреси</a>
+    <a href="#vojvodi">Војводи</a>
+    <a href="#nastani">Настани</a>
+    <a href="#dokumenti">Документи</a>
+    <a href="#knigi">Книги</a>
+  </div>
+  <div class="footer-copy">© 2026 — Историски архив ВМРО</div>
+</footer>
+
+</body>
+</html>
